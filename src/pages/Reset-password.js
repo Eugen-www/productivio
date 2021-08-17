@@ -37,7 +37,7 @@ const ResetPassword = () => {
             send your password via email.
           </p>
         </div>
-        <Input type="email" className="input__form" name="email" />
+        <Input type="email" className="input__form" name="email" long />
         <Button className="button__form">Reset email</Button>
       </div>
     </div>
