@@ -15,7 +15,7 @@ const Input = ({ type, className, name, long, short }) => {
           </div>
           <input
             type={type}
-            id={`${name}-input`}
+            id={name}
             className={classNames('input', className, {
               'input--long': long,
               'input--short': short,
@@ -25,13 +25,24 @@ const Input = ({ type, className, name, long, short }) => {
         </React.Fragment>
       );
       break;
+    case 'checkbox':
+      input = (
+        <div id="checkbox-input">
+          <input type={type} id={name} name={name} className="custom-checkbox" />
+          <label htmlFor={name}>
+            Creating an account means you’re okay with our Terms of Service, Privacy Policy, and our
+            default Notification Settings.
+          </label>
+        </div>
+      );
+      break;
     default:
       input = (
         <React.Fragment>
-          <label htmlFor={name}>Username or Email Address</label>
+          <label htmlFor={name}>{name[0].toUpperCase() + name.substring(1)}</label>
           <input
             type={type}
-            id={`${name}-input`}
+            id={name}
             className={classNames('input', className, {
               'input--long': long,
               'input--short': short,

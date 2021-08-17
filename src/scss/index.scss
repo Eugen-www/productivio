@@ -66,13 +66,14 @@
   }
 }
 
-.sign-in__form {
+.sign-in__form,
+.sign-up__form {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  & label {
+  & label:not([for='checkbox']) {
     display: block;
     width: 100%;
   }
@@ -89,3 +90,11 @@
   }
 }
 
+.form {
+  &__user-info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
