@@ -1,0 +1,41 @@
+label {
+  display: inline-block;
+  width: 100%;
+}
+.input {
+  box-sizing: border-box;
+  height: 32px;
+  max-height: 100%;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+  &:focus {
+    outline: none;
+    background-color: $yellow;
+    border: 2px solid $darkerYellow2;
+  }
+  &:hover {
+    outline: none;
+    background-color: $yellow;
+  }
+  &__form {
+    background-color: $lighterYellow2;
+    margin: 5px 0 15px 0;
+    padding: 8px;
+    &:focus {
+      background-color: $yellow;
+      border: 2px solid $darkerYellow2;
+    }
+    &:hover {
+      background-color: $yellow;
+    }
+  }
+  &--long {
+    width: 100%;
+    max-width: 365px;
+  }
+  &--short {
+    width: 175px;
+  }
+}

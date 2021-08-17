@@ -1,0 +1,47 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  outline: none;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: $textColor;
+  background-color: $backgroundColor;
+  font-weight: 500;
+}
+
+a,
+span,
+p,
+b,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: $textColor;
+}
+
+a {
+  text-decoration: none;
+  color: $lighterBlue1;
+  &:hover {
+    color: $blue;
+  }
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
