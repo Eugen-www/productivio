@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 import Input from '../components/Input';
 
+import authAPI from '../api/authAPI';
+
 const SignIn = () => {
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
   return (
     <div className="content">
       <div className="content__banner content__banner--right">
@@ -33,9 +37,33 @@ const SignIn = () => {
           <span>or</span>
         </div>
         <div className="sign-in__form">
-          <Input type="text" className="input__form" name="username" long />
-          <Input type="password" className="input__form" name="password" long />
-          <Button className="button__form">Sign in</Button>
+          <Input
+            type="text"
+            className="input__form"
+            name="username"
+            long
+            text={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
+          <Input
+            type="password"
+            className="input__form"
+            name="password"
+            long
+            text={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+          <Button
+            className="button__form"
+            onClick={() => {
+              authAPI.login({ username, password });
+            }}>
+            Sign in
+          </Button>
         </div>
       </div>
     </div>

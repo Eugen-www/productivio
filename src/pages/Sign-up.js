@@ -2,8 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 import Input from '../components/Input';
+import authAPI from '../api/authAPI';
 
 const SignUp = () => {
+  const [name, setName] = React.useState('');
+  const [username, setUsername] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   return (
     <div className="content">
       <div className="content__banner content__banner--right">
@@ -34,16 +39,63 @@ const SignUp = () => {
         <div className="sign-up__form">
           <div className="form__user-info">
             <div id="name">
-              <Input type="text" className="input__form" name="name" short />
+              <Input
+                type="text"
+                className="input__form"
+                name="name"
+                text={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+                short
+              />
             </div>
             <div id="username">
-              <Input type="text" className="input__form" name="username" short />
+              <Input
+                type="text"
+                className="input__form"
+                name="username"
+                text={username}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
+                short
+              />
             </div>
           </div>
-          <Input type="email" className="input__form" name="email" long />
-          <Input type="password" className="input__form" name="password" long />
+          <Input
+            type="email"
+            className="input__form"
+            name="email"
+            text={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            long
+          />
+          <Input
+            type="password"
+            className="input__form"
+            name="password"
+            text={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            long
+          />
           <Input type="checkbox" name="checkbox" />
-          <Button className="button__form">Create Account</Button>
+          <Button
+            className="button__form"
+            onClick={() => {
+              authAPI.registration({
+                name,
+                username,
+                password,
+                email,
+              });
+            }}>
+            Create Account
+          </Button>
         </div>
       </div>
     </div>

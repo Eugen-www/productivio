@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
-const Input = ({ type, className, name, long, short }) => {
+const Input = ({ type, className, name, long, short, text, onChange }) => {
   let input;
 
   switch (type) {
@@ -21,7 +21,9 @@ const Input = ({ type, className, name, long, short }) => {
               'input--short': short,
             })}
             autoComplete="false"
-            name={name}></input>
+            name={name}
+            defaultValue={text}
+          />
         </React.Fragment>
       );
       break;
@@ -48,7 +50,10 @@ const Input = ({ type, className, name, long, short }) => {
               'input--short': short,
             })}
             autoComplete="false"
-            name={name}></input>
+            name={name}
+            defaultValue={text}
+            onChange={onChange}
+          />
         </React.Fragment>
       );
       break;
