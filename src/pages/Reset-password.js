@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../components/Button';
-import Input from '../components/Input';
+// import Button from '../components/Button';
+// import Input from '../components/Input';
 
 const ResetPassword = () => {
   return (
@@ -37,8 +37,8 @@ const ResetPassword = () => {
             send your password via email.
           </p>
         </div>
-        <Input type="email" className="input__form" name="email" long />
-        <Button className="button__form">Reset email</Button>
+        {/* <Input type="email" className="input__form" name="email" long />
+        <Button className="button__form">Reset email</Button> */}
       </div>
     </div>
   );

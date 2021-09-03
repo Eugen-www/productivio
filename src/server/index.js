@@ -15,10 +15,13 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-app.use([express.json(), cors()]);
+app.use([express.json(), cors(corsOptions)]);
 app.use('/auth', [
   auth,
-  createProxyMiddleware({ target: 'http://localhost:5000', changeOrigin: true }),
+  createProxyMiddleware({
+    target: `http://localhost:${PORT}`,
+    changeOrigin: true,
+  }),
 ]);
 
 const start = async () => {

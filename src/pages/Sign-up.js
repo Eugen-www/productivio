@@ -1,14 +1,52 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../components/Button';
-import Input from '../components/Input';
+import Form from '../components/Form';
 import authAPI from '../api/authAPI';
 
 const SignUp = () => {
-  const [name, setName] = React.useState('');
-  const [username, setUsername] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const inputs = [
+    {
+      name: 'name',
+      label: 'Name',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'username',
+      label: 'Username',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'email',
+      label: 'Email',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'password',
+      label: 'Password',
+      type: 'password',
+      required: true,
+    },
+  ];
+  const messages = {
+    name: 'Your name is too short',
+    password: 'Your password is too short',
+  };
+  const validators = {
+    name: (value) => value.length >= 2,
+    password: (value) => value.length >= 8,
+  };
+
+  const initialData = {
+    name: '',
+    username: '',
+    email: '',
+    password: '',
+  };
+
+  const formProps = { initialData, inputs, validators, messages, apiMethod: authAPI.registration };
   return (
     <div className="content">
       <div className="content__banner content__banner--right">
@@ -17,7 +55,7 @@ const SignUp = () => {
       </div>
       <div className="container container--auth">
         <h1 className="content__title">Sign up to Productivo</h1>
-        <Button className="button__google-auth">
+        {/* <Button className="button__google-auth">
           <svg
             aria-hidden="true"
             focusable="false"
@@ -32,71 +70,11 @@ const SignUp = () => {
               d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path>
           </svg>
           <span>Sign up with Google</span>
-        </Button>
+        </Button> */}
         <div className="content__divider">
           <span>or</span>
         </div>
-        <div className="sign-up__form">
-          <div className="form__user-info">
-            <div id="name">
-              <Input
-                type="text"
-                className="input__form"
-                name="name"
-                text={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-                short
-              />
-            </div>
-            <div id="username">
-              <Input
-                type="text"
-                className="input__form"
-                name="username"
-                text={username}
-                onChange={(e) => {
-                  setUsername(e.target.value);
-                }}
-                short
-              />
-            </div>
-          </div>
-          <Input
-            type="email"
-            className="input__form"
-            name="email"
-            text={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            long
-          />
-          <Input
-            type="password"
-            className="input__form"
-            name="password"
-            text={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            long
-          />
-          <Input type="checkbox" name="checkbox" />
-          <Button
-            className="button__form"
-            onClick={() => {
-              authAPI.registration({
-                name,
-                username,
-                password,
-                email,
-              });
-            }}>
-            Create Account
-          </Button>
-        </div>
+        <Form {...formProps} />
       </div>
     </div>
   );
