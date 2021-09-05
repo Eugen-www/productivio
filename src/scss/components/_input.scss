@@ -9,12 +9,19 @@ label {
 }
 .input {
   box-sizing: border-box;
+  width: 100%;
+  max-width: 365px;
   height: 32px;
   max-height: 100%;
   border: none;
   border-radius: 5px;
   font-weight: 500;
   transition: background-color 0.3s;
+  &__container {
+    width: 100%;
+
+    margin: 5px 0 15px 0;
+  }
   &:focus {
     outline: none;
     background-color: $yellow;
@@ -26,7 +33,6 @@ label {
   }
   &__form {
     background-color: $lighterYellow2;
-    margin: 5px 0 15px 0;
     padding: 8px;
     &:focus {
       background-color: $yellow;
@@ -36,13 +42,15 @@ label {
       background-color: $yellow;
     }
   }
-  &--long {
-    width: 100%;
-    max-width: 365px;
-  }
-  &--short {
-    width: 175px;
-  }
+}
+
+.text-danger {
+  width: 100%;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  background-color: #e63d2e;
+  margin-top: 5px;
 }
 
 .custom-checkbox {
