@@ -13,9 +13,7 @@ class authController {
     try {
       const { name, username, password, email } = req.body;
       const candidate = await User.findOne({ username });
-      if (candidate) {
-        res.status(400).json({ message: `There is a user with username ${username}` });
-      }
+      if (candidate) res.status(400).json({ message: `There is a user with username ${username}` });
       const hashPassword = bcrypt.hashSync(password, 8);
       const user = new User({ name, username, password: hashPassword, email });
       await user.save();
@@ -29,21 +27,22 @@ class authController {
     try {
       const { username, password } = req.body;
       const user = await User.findOne({ username });
-      if (!user) {
-        return res.status(400).json({ message: `There is not a user with username ${username}` });
-      }
+      if (!user)
+        return res
+          .status(400)
+          .json({ message: `There is not a user with username ${username}`, place: 'username' });
+
       const validPassword = bcrypt.compareSync(password, user.password);
-      if (!validPassword) {
-        res.status(400).json({ message: `Invalid password` });
-      }
+      if (!validPassword) res.status(400).json({ message: `Invalid password`, place: 'password' });
+
       const token = generateAccessToken(user._id);
-      res
+      return res
         .status(200)
         .set({ Authorization: `Bearer ${token}` })
         .json({ token });
     } catch (e) {
       console.log(e);
-      res.status(400).json({ message: 'Login error' });
+      return res.status(400).json({ message: 'Login error' });
     }
   }
 }
