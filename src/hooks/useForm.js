@@ -34,16 +34,13 @@ const useForm = ({ initialData, apiMethod, validators, required = true, messages
   const [requiredFields, setRequiredFields] = useState(null);
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(true);
-
   const [response, setResponse] = useState(null);
   const [errors, setErrors] = useState(initialData);
-  console.log(fields);
 
   useEffect(() => {
     if (!required && requiredFields) {
       setDisabled(isEmpty(requiredFields));
     } else {
-      console.log(isEmpty(fields));
       setDisabled(isEmpty(fields));
     }
   }, [required, fields, requiredFields]);
@@ -80,7 +77,11 @@ const useForm = ({ initialData, apiMethod, validators, required = true, messages
       }
     }
 
-    const response = apiMethod(fields);
+    const response = await apiMethod(fields);
+    if (response.status !== 200) {
+      setLoading(false);
+      return setErrors({ ...errors, [response.error.place]: response.error.message });
+    }
     setResponse(response);
     setLoading(false);
   };

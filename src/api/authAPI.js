@@ -2,23 +2,31 @@ const axios = require('axios').default;
 
 class authAPI {
   registration = async (data) => {
-    try {
-      const response = await axios.post('auth/registration', data);
-      return `Success: ${response.data.message}`;
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await axios
+      .post('http://localhost:5000/auth/registration', data)
+      .catch(function (error) {
+        if (error.response) {
+          return {
+            data: error.response.data.message,
+            status: error.response.status,
+          };
+        }
+      });
+    return response;
   };
   login = async (data) => {
-    try {
-      const response = await axios.post('auth/login', data);
-      console.log(`Success: ${response.data.token}`);
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await axios
+      .post('http://localhost:5000/auth/login', data)
+      .catch(function (error) {
+        if (error.response) {
+          return {
+            error: error.response.data,
+            status: error.response.status,
+          };
+        }
+      });
+    return response;
   };
 }
 
 module.exports = new authAPI();
-
-
